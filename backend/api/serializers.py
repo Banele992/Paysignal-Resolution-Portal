@@ -42,9 +42,26 @@ class TransactionSerializer(serializers.ModelSerializer):
 
 
 class EnquirySerializer(serializers.ModelSerializer):
+    transaction = TransactionSerializer(read_only=True)
+    transaction_id = serializers.PrimaryKeyRelatedField(
+        source="transaction",
+        queryset=Transaction.objects.all(),
+        write_only=True
+    )
+
     class Meta:
         model = Enquiry
-        fields = ["id","reason","details","created_at","author","attachment","transaction","status"]
+        fields = [
+            "id",
+            "reason",
+            "details",
+            "created_at",
+            "author",
+            "attachment",
+            "transaction",
+            "transaction_id",
+            "status",
+        ]
         extra_kwargs = {"author": {"read_only": True}} 
 
 

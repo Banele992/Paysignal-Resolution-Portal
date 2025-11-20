@@ -111,7 +111,8 @@ function Home(){
         const formData = new FormData();
         formData.append("reason", enquiryReason);
         formData.append("details", enquiryDetails);
-        formData.append("transaction", selectedTransaction.id);
+        formData.append("transaction_id", selectedTransaction.id);
+
         if (enquiryAttachment) {
             formData.append("attachment", enquiryAttachment);
         }
@@ -486,7 +487,7 @@ return (
                                     borderRadius: "4px"
                                 }}
                             >
-                                Create
+                                Send Money
                             </button>
                         </div>
                     </form>
